@@ -71,14 +71,16 @@ export function PrequalForm() {
         return;
       }
       const payload = parseSubmitData(data);
-      payload.recaptcha = token;
 
       const response = await fetch('/api/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          ...payload,
+          recaptcha: token
+        }),
       })
 
       const result = await response.json()
