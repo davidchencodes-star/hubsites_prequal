@@ -84,7 +84,7 @@ const initialFormData = {
   firstName: '',
   MI: '',
   lastName: '',
-  suffix: '',
+  suffix: ' ',
   address: '',
   zip: '',
   city: '',

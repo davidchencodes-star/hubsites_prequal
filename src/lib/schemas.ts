@@ -55,7 +55,7 @@ export type PrequalFormData = z.infer<typeof prequalFormSchema>
 
 // Suffix options
 export const suffixOptions = [
-  { value: '', label: 'Suffix' },
+  { value: ' ', label: 'Suffix' },
   { value: 'JR', label: 'JR' },
   { value: 'SR', label: 'SR' },
   { value: 'II', label: 'II' },

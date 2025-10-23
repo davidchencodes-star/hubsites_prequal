@@ -41,7 +41,7 @@ export function PrequalForm() {
       firstName: '',
       MI: '',
       lastName: '',
-      suffix: '',
+      suffix: ' ',
       address: '',
       zip: '',
       city: '',
@@ -229,8 +229,8 @@ export function PrequalForm() {
                 <div className="md:col-span-2">
                   <Label htmlFor="suffix">Suffix</Label>
                   <Select
-                    value={form.watch('suffix')}
-                    onValueChange={(value) => form.setValue('suffix', value)}
+                    value={form.watch('suffix') || ' '}
+                    onValueChange={(value) => form.setValue('suffix', value === ' ' ? '' : value)}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Suffix" />
