@@ -48,9 +48,9 @@ export async function getZipCode(
   form: UseFormReturn<any>,
   onMultipleResults?: (items: ZipCodeInfo[], zip: string) => void
 ) {
-  const fetchedData = usePrequalStore.getState().fetchedData;
+  const config = usePrequalStore.getState().config;
   const payload = {
-    id: fetchedData?.token,
+    id: config?.id,
     zip: zip
   }
   setLoading(true);
