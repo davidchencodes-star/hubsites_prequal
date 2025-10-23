@@ -4,7 +4,7 @@ import { devtools } from 'zustand/middleware'
 export interface ZipCodeInfo {
   city: string
   county: string
-  state: string | null | undefined
+  state?: string | null
 }
 
 export interface FetchedFormData {
@@ -13,7 +13,7 @@ export interface FetchedFormData {
   contactEmail: string | null
   name: string | null
   phone: string | null
-  token: string | null
+  token?: string | null
 }
 
 export interface PrequalState {
