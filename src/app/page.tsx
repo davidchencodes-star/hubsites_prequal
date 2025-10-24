@@ -109,7 +109,7 @@ export default function Home() {
         <PrequalForm />
       </GoogleReCaptchaProvider>
 
-      {/* Loading Spinner Overlay */}
+      {/* Loading Spinner Overlay - shows on top of form */}
       {isLoading && (
         <LoadingSpinner />
       )}

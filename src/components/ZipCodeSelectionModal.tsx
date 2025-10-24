@@ -1,14 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from './ui/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from './ui/dialog'
 import { Button } from './ui/button'
+import { RadioGroup, RadioGroupItem } from './ui/radio-group'
+import { Label } from './ui/label'
 import { ZipCodeInfo } from '@/lib/store'
 
 interface ZipCodeSelectionModalProps {
@@ -19,69 +15,81 @@ interface ZipCodeSelectionModalProps {
   zip: string
 }
 
-export function ZipCodeSelectionModal({
-  open,
-  onClose,
-  onSelect,
-  items,
-  zip
+export function ZipCodeSelectionModal({ 
+  open, 
+  onClose, 
+  onSelect, 
+  items, 
+  zip 
 }: ZipCodeSelectionModalProps) {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const [selectedItem, setSelectedItem] = useState<ZipCodeInfo | null>(null)
 
-  const handleSave = () => {
-    if (selectedIndex !== null) {
-      onSelect(items[selectedIndex])
+  const handleSelect = () => {
+    if (selectedItem) {
+      onSelect(selectedItem)
+      setSelectedItem(null)
       onClose()
     }
   }
 
+  const handleCancel = () => {
+    setSelectedItem(null)
+    onClose()
+  }
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Select City/County/State for ZIP {zip}</DialogTitle>
+          <DialogTitle>Select City/County for Zip Code {zip}</DialogTitle>
         </DialogHeader>
         
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b">
-                <th className="p-2 text-left"></th>
-                <th className="p-2 text-left font-semibold">City</th>
-                <th className="p-2 text-left font-semibold">County</th>
-                <th className="p-2 text-left font-semibold">State</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item, index) => (
-                <tr 
-                  key={index}
-                  className={`border-b cursor-pointer hover:bg-gray-100 ${selectedIndex === index ? 'bg-blue-50' : ''}`}
-                  onClick={() => setSelectedIndex(index)}
+        <div className="p-4">
+          <p className="text-sm text-gray-600 mb-4">
+            Multiple locations found for this zip code. Please select one.
+          </p>
+          
+          <RadioGroup 
+            value={selectedItem ? `${selectedItem.city}-${selectedItem.state}` : ''} 
+            onValueChange={(value: string) => {
+              const item = items.find(item => `${item.city}-${item.state}` === value)
+              setSelectedItem(item || null)
+            }}
+            className="space-y-3"
+          >
+            {items.map((item, index) => (
+              <div key={index} className="flex items-center space-x-2">
+                <RadioGroupItem 
+                  value={`${item.city}-${item.state}`} 
+                  id={`option-${index}`}
+                />
+                <Label 
+                  htmlFor={`option-${index}`} 
+                  className="flex-1 cursor-pointer pb-0 pl-2"
                 >
-                  <td className="p-2">
-                    <input
-                      type="radio"
-                      checked={selectedIndex === index}
-                      onChange={() => setSelectedIndex(index)}
-                      className="cursor-pointer"
-                    />
-                  </td>
-                  <td className="p-2">{item.city}</td>
-                  <td className="p-2">{item.county}</td>
-                  <td className="p-2">{item.state}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  <div className="font-medium">{item.city}</div>
+                  <div className="text-sm text-gray-600">
+                    {item.county && `${item.county}, `}
+                    {item.state}
+                  </div>
+                </Label>
+              </div>
+            ))}
+          </RadioGroup>
         </div>
 
-        <DialogFooter>
-          <Button variant="outline" onClick={onClose}>
-            Close
+        <DialogFooter className="flex justify-end space-x-2">
+          <Button 
+            variant="outline" 
+            onClick={handleCancel}
+          >
+            Cancel
           </Button>
-          <Button onClick={handleSave} disabled={selectedIndex === null}>
-            Save
+          <Button 
+            onClick={handleSelect}
+            disabled={!selectedItem}
+          >
+            Select
           </Button>
         </DialogFooter>
       </DialogContent>
