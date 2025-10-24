@@ -157,6 +157,7 @@ SITE_URL=http://localhost:3000
 API_BASE_URL=https://your-api-endpoint.com
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
 RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key
+POSTMARK_TOKEN=your_postmark_server_token
 DEBUG_ENABLED=true
 ```
 

@@ -16,11 +16,10 @@ export function parseSubmitData(data: any) {
   const fetchedData = usePrequalStore.getState().fetchedData;
 
   const payload = {
-    id: fetchedData?.token,
     firstName: data.firstName,
     MI: data.MI,
     lastName: data.lastName,
-    suffix: data.suffix,
+    suffix: data.suffix && data.suffix.trim() !== '' ? data.suffix : '',
     fullName: [data.firstName, data.MI, data.lastName].filter(Boolean).join(' '),
     address: data.address,
     zip: data.zip,
