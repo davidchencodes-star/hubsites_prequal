@@ -276,23 +276,23 @@ export function PrequalForm() {
                   <Label htmlFor="zip">
                     Zip <span className="text-red-500">*</span>
                   </Label>
-                  <div className="flex gap-2">
+                  <div className="relative">
                     <Input
                       id="zip"
                       {...form.register('zip')}
                       placeholder="Zip"
                       onChange={handleZipChange}
                       aria-invalid={!!getFieldError(form.formState.errors, 'zip')}
+                      className="pr-12"
                     />
-                    <Button
+                    <button
                       type="button"
-                      variant="outline"
-                      size="icon"
                       onClick={handleZipDecode}
                       title="Decode Zip"
+                      className="absolute right-0 top-0 h-full px-3 bg-gray-100 hover:bg-gray-200 rounded-r-sm border-l border-gray-300 flex items-center justify-center transition-colors cursor-pointer"
                     >
-                      <RefreshCw className="h-4 w-4" />
-                    </Button>
+                      <RefreshCw className="h-4 w-4 text-gray-600" />
+                    </button>
                   </div>
                   {getFieldError(form.formState.errors, 'zip') && (
                     <p className="text-red-500 text-sm mt-1">{getFieldError(form.formState.errors, 'zip')}</p>
