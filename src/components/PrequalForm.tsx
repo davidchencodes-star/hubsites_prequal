@@ -387,14 +387,14 @@ export function PrequalForm() {
                 <button
                   type="button"
                   onClick={handleShowPrivacy}
-                  className="text-blue-600 underline font-semibold mx-3"
+                  className="text-blue-600 underline font-semibold mx-3 cursor-pointer"
                 >
                   Privacy Notice
                 </button>
                 <button
                   type="button"
                   onClick={handleShowTerms}
-                  className="text-blue-600 underline font-semibold mx-3"
+                  className="text-blue-600 underline font-semibold mx-3 cursor-pointer"
                 >
                   Terms and Conditions
                 </button>
