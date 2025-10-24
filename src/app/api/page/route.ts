@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import fs from 'fs'
+import path from 'path'
 
 export async function POST(request: NextRequest) {
   try {
@@ -6,8 +8,6 @@ export async function POST(request: NextRequest) {
     const { page, name, phone, email } = body
 
     // Read the HTML file from the public/pages directory
-    const fs = require('fs')
-    const path = require('path')
     const filePath = path.join(process.cwd(), 'public', 'pages', page)
     
     if (!fs.existsSync(filePath)) {
