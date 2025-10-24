@@ -8,6 +8,14 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Prequal Application',
   description: 'Modern prequal application form built with Next.js',
+  icons: {
+    icon: [
+      { url: '/img/favicon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/img/favicon.png', sizes: '16x16', type: 'image/png' }
+    ],
+    shortcut: '/img/favicon.png',
+    apple: '/img/favicon.png'
+  }
 }
 
 export default async function RootLayout({
@@ -17,9 +25,6 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/img/favicon.png" />
-      </head>
       <body className={inter.className}>
         <Suspense fallback={
           <div className="min-h-screen bg-gray-50 flex items-center justify-center">
