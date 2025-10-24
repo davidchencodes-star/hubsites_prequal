@@ -1,87 +1,121 @@
 'use client'
 
 import { usePrequalStore } from '@/lib/store'
+import { Button } from './ui/button'
+import { CheckCircle } from 'lucide-react'
 
-export function SuccessPage() {
+interface SuccessPageProps {
+  className?: string
+}
+
+export function SuccessPage({ className }: SuccessPageProps) {
   const { config, fetchedData } = usePrequalStore()
 
   const handleViewInventory = () => {
-    parent.postMessage("viewInventory::", "*");
+    if (typeof parent !== 'undefined') {
+      parent.postMessage("viewInventory::", "*")
+    }
   }
 
-  if (config.successPageEnabled && config.successLogo) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center px-4">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4 mt-5">THANK YOU!</h1>
-          <h3 className="text-xl text-gray-600 mb-4">We will contact you shortly.</h3>
-          {config.successLogo && (
-            <div className="my-4">
-              <img src={config.successLogo} alt="Thank You App Image" id="successImg" className="mx-auto max-w-md" />
-            </div>
+  const getButtonStyles = () => {
+    if (config.btnType === 'styled') {
+      return {
+        padding: '10px 20px',
+        borderRadius: config.borderRadius,
+        borderWidth: config.borderWidth,
+        borderColor: config.borderColor,
+        color: config.color,
+        backgroundColor: config.backgroundColor,
+        borderStyle: 'solid' as const,
+      }
+    }
+    return {}
+  }
+
+  const getHoverStyles = () => {
+    if (config.btnType === 'styled') {
+      return {
+        borderColor: config.hBorderC,
+        color: config.hColor,
+        opacity: config.opacity,
+        backgroundColor: config.bgHColor,
+      }
+    }
+    return {}
+  }
+
+  const renderCustomSuccessPage = () => (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center px-4 max-w-2xl">
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">Thank You!</h1>
+        <p className="text-xl text-gray-600 mb-6">We will contact you shortly.</p>
+        
+        {config.successLogo && (
+          <div className="my-6">
+            <img 
+              src={config.successLogo} 
+              alt="Thank You" 
+              className="mx-auto max-w-md h-auto" 
+            />
+          </div>
+        )}
+        
+        <div className="space-y-2 mb-8">
+          <h3 className="text-xl text-gray-800 font-semibold">{fetchedData?.name}</h3>
+          {config.dealerLocation && (
+            <p className="text-lg text-gray-600">{config.dealerLocation}</p>
           )}
-          <div className="mt-4">
-            <h3 className="text-xl text-gray-800">{fetchedData?.name}</h3>
-          </div>
-          <div>
-            <h5 className="text-lg text-gray-600">{config.dealerLocation}</h5>
-          </div>
-          <div>
-            <h5 className="text-lg text-gray-600">{fetchedData?.phone}</h5>
-          </div>
-          <div className="mt-5">
-            <h4 className="text-lg text-gray-800">In The Meantime…</h4>
-          </div>
-          <div className="mt-4">
-            <button 
-              id="inventoryBtn" 
-              onClick={handleViewInventory}
-              style={{
-                padding: '10px 20px',
-                borderRadius: config.borderRadius,
-                borderWidth: config.btnType === 'styled' ? config.borderWidth : '0',
-                borderColor: config.btnType === 'styled' ? config.borderColor : 'transparent',
-                color: config.color,
-                backgroundColor: config.backgroundColor,
-                borderStyle: 'solid',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                if (config.btnType === 'styled') {
-                  e.currentTarget.style.borderColor = config.hBorderC;
-                  e.currentTarget.style.color = config.hColor;
-                  e.currentTarget.style.opacity = config.opacity;
-                  e.currentTarget.style.backgroundColor = config.bgHColor;
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (config.btnType === 'styled') {
-                  e.currentTarget.style.borderColor = config.borderColor;
-                  e.currentTarget.style.color = config.color;
-                  e.currentTarget.style.opacity = '1';
-                  e.currentTarget.style.backgroundColor = config.backgroundColor;
-                }
-              }}
-            >
-              <span>View More Inventory</span>
-            </button>
-          </div>
+          {fetchedData?.phone && (
+            <p className="text-lg text-gray-600">{fetchedData.phone}</p>
+          )}
+        </div>
+        
+        <div className="space-y-4">
+          <h4 className="text-lg text-gray-800 font-medium">In The Meantime…</h4>
+          <Button 
+            onClick={handleViewInventory}
+            className="px-6 py-3 text-base font-medium"
+            style={getButtonStyles()}
+            onMouseEnter={(e) => {
+              if (config.btnType === 'styled') {
+                Object.assign(e.currentTarget.style, getHoverStyles())
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (config.btnType === 'styled') {
+                Object.assign(e.currentTarget.style, getButtonStyles())
+              }
+            }}
+          >
+            View More Inventory
+          </Button>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+
+  const renderDefaultSuccessPage = () => (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center px-4 max-w-md">
+        <div className="mb-8 flex justify-center">
+          <CheckCircle className="w-16 h-16 text-green-500" />
+        </div>
+        <h1 className="text-2xl font-semibold text-gray-800 mb-4">
+          Thank you, your application was received.
+        </h1>
+        <p className="text-base text-gray-600">
+          We will contact you shortly.
+        </p>
+      </div>
+    </div>
+  )
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="text-center">
-        <div className="mb-8 flex justify-center">
-          <svg className="w-16 h-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <div className="text-xl mb-4">Thank you, your application was received.</div>
-        <div className="text-base">We will contact you shortly.</div>
-      </div>
+    <div className={className}>
+      {config.successPageEnabled && config.successLogo 
+        ? renderCustomSuccessPage() 
+        : renderDefaultSuccessPage()
+      }
     </div>
   )
 }
