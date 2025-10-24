@@ -181,9 +181,9 @@ export function PrequalForm() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto p-4 max-w-4xl"
+        className="container mx-auto p-2 md:p-4 max-w-4xl"
       >
-        <Card className="p-8 shadow-sm">
+        <Card className="p-4 md:p-8 shadow-sm">
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             {/* Personal Information Section */}
             <CardContent>
@@ -376,7 +376,7 @@ export function PrequalForm() {
             </CardContent>
 
             {/* Footer Section */}
-            <div className="border-t pt-8 px-6">
+            <div className="border-t pt-8 px-3 md:px-6">
               <div className="text-right mb-4">
                 <span className="text-sm">
                   <span className="text-red-500">*</span> required fields
