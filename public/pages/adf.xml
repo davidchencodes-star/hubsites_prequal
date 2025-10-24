@@ -1,44 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?adf version="1.0"?>
 <adf>
-    <prospect>
-        <requestdate>{{requestDate}}</requestdate>
-        <vehicle interest="buy" status="new">
-            <year></year>
-            <make></make>
-            <model></model>
-        </vehicle>
-        <customer>
-            <contact>
-                <name part="first">{{firstName}}</name>
-                <name part="middle">{{middleName}}</name>
-                <name part="last">{{lastName}}</name>
-                <name part="suffix">{{suffix}}</name>
-                <email>{{email}}</email>
-                <phone type="voice" time="evening">{{homePhone}}</phone>
-                <phone type="cellphone">{{mobilephone}}</phone>
-                <address>
-                    <street>{{address}}</street>
-                    <city>{{city}}</city>
-                    <regioncode>{{state}}</regioncode>
-                    <postalcode>{{zip}}</postalcode>
-                </address>
-            </contact>
-        </customer>
-        <vendor>
-            <vendorname>{{dealerName}}</vendorname>
-            <contact>
-                <name>{{dealerName}}</name>
-                <phone>{{dealerPhone}}</phone>
-            </contact>
-        </vendor>
-        <provider>
-            <name part="full">GetMyAuto Prequal Application</name>
-            <service>Prequal Form</service>
-            <url>https://getmyauto.com</url>
-            <email>support@getmyauto.com</email>
-        </provider>
-    </prospect>
+	<prospect status="new">
+		<id sequence="1" source="Get My Auto - PreQual">GMA PREQUAL"></id>
+		<requestdate>{{requestDate}}</requestdate>
+		<customer>
+			<contact>
+				<name part="first" type="individual">{{firstName}}</name>
+				<name part="middle" type="individual">{{middleName}}</name>
+				<name part="last" type="individual">{{lastName}}</name>
+				<email>{{email}}</email>
+				<phone type="cellphone">{{mobilephone}}</phone>
+				<phone type="phone">{{homePhone}}</phone>
+				<address type="home">
+					<street>{{address}}</street>
+					<city>{{city}}</city>
+					<regioncode>{{state}}</regioncode>
+					<postalcode>{{zip}}</postalcode>
+				</address>
+			</contact>
+		</customer>
+		<provider>
+			<name part="full" type="business">Get My Auto</name>
+			<service>PreQual</service>
+			<url>https://www.getmyauto.com</url>
+			<email>support@getmyauto.com</email>
+		</provider>
+	</prospect>
 </adf>
-
-
