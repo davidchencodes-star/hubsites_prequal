@@ -116,4 +116,3 @@ export const stateList = [
   { value: 'WI', label: 'Wisconsin' },
   { value: 'WY', label: 'Wyoming' }
 ]
-
