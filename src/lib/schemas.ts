@@ -19,7 +19,7 @@ export const residentialInfoSchema = z.object({
   zip: z.string().min(1, 'Zip code is required').regex(zipCodeRegex, 'Invalid zip code format'),
   city: z.string().min(1, 'City is required'),
   state: z.string().min(1, 'State is required'),
-  homePhone: z.string().optional().refine(val => !val || phoneRegex.test(val), 'Invalid phone number'),
+  homePhone: z.string().refine(val => !val || val === '' || phoneRegex.test(val), 'Invalid phone number').optional(),
   mobilephone: z.string().min(1, 'Cell phone is required').regex(phoneRegex, 'Invalid phone number'),
   email: z.string().min(1, 'Email is required').regex(emailRegex, 'Invalid email format')
 })

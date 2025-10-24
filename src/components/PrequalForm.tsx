@@ -333,8 +333,19 @@ export function PrequalForm() {
                   <Label htmlFor="homePhone">Home Phone</Label>
                   <Input
                     id="homePhone"
-                    {...form.register('homePhone')}
-                    placeholder="Home Phone"
+                    value={(() => {
+                      const phone = form.watch('homePhone') || ''
+                      const digits = phone.replace(/\D/g, '')
+                      if (digits.length <= 3) return digits
+                      if (digits.length <= 6) return `(${digits.slice(0, 3)})${digits.slice(3)}`
+                      return `(${digits.slice(0, 3)})${digits.slice(3, 6)}-${digits.slice(6, 10)}`
+                    })()}
+                    onChange={(e) => {
+                      const digits = e.target.value.replace(/\D/g, '').slice(0, 10)
+                      form.setValue('homePhone', digits)
+                    }}
+                    placeholder="(XXX)XXX-XXXX"
+                    maxLength={13}
                     aria-invalid={!!getFieldError(form.formState.errors, 'homePhone')}
                   />
                   {getFieldError(form.formState.errors, 'homePhone') && (
@@ -348,8 +359,19 @@ export function PrequalForm() {
                   </Label>
                   <Input
                     id="mobilephone"
-                    {...form.register('mobilephone')}
-                    placeholder="Cell Phone"
+                    value={(() => {
+                      const phone = form.watch('mobilephone') || ''
+                      const digits = phone.replace(/\D/g, '')
+                      if (digits.length <= 3) return digits
+                      if (digits.length <= 6) return `(${digits.slice(0, 3)})${digits.slice(3)}`
+                      return `(${digits.slice(0, 3)})${digits.slice(3, 6)}-${digits.slice(6, 10)}`
+                    })()}
+                    onChange={(e) => {
+                      const digits = e.target.value.replace(/\D/g, '').slice(0, 10)
+                      form.setValue('mobilephone', digits)
+                    }}
+                    placeholder="(XXX)XXX-XXXX"
+                    maxLength={13}
                     aria-invalid={!!getFieldError(form.formState.errors, 'mobilephone')}
                   />
                   {getFieldError(form.formState.errors, 'mobilephone') && (
