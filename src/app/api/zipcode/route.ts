@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { logit, logError } from '@/lib/logger'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    console.log('Zipcode Request:', body)
+    logit('Zipcode Request:', body)
 
     // Build URL with query parameters
     const url = new URL(`${process.env.API_BASE_URL}/ca/soft`)
     url.searchParams.append('id', body.id || '')
     url.searchParams.append('zip', body.zip || '')
 
-    console.log('Fetching from:', url.toString())
+    logit('Fetching from:', url.toString())
 
     // Send POST request to the API (matching PHP behavior)
     const response = await fetch(url.toString(), {
@@ -21,10 +22,10 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({})
     });
 
-    console.log('Zipcode Response Status:', response.status)
+    logit('Zipcode Response Status:', response.status)
 
     const data = await response.json();
-    console.log('Zipcode Response Data:', data)
+    logit('Zipcode Response Data:', data)
 
     if (data.error == 0) {
       return NextResponse.json({ success: true, content: data }, { status: 200 });
@@ -32,7 +33,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, content: data, msg: data.msg }, { status: 400 });
     }
   } catch (error) {
-    console.error('Zipcode Error:', error)
+    logError('Zipcode Error:', error)
     return NextResponse.json(
       {
         success: false,
