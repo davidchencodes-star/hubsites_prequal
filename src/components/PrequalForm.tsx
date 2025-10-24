@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'framer-motion'
@@ -169,9 +169,11 @@ export function PrequalForm() {
     setShowTermsModal(true)
   }
 
-  if (process.env.NODE_ENV === 'development') {
-    logit(form.formState.errors);
-  }
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      logit(form.formState.errors);
+    }
+  }, [form.formState.errors])
 
   return (
     <FormProvider form={form}>
