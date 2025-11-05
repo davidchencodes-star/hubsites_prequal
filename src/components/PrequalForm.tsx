@@ -483,7 +483,7 @@ export function PrequalForm() {
       />
 
       <Dialog open={showPrivacyModal} onOpenChange={setShowPrivacyModal}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="!w-[100vw] !h-[100vh] !max-w-none !max-h-none sm:!max-w-none overflow-y-auto m-0 rounded-none z-[9999]">
           <DialogHeader>
             <DialogTitle>{t('modal.privacyTitle')}</DialogTitle>
           </DialogHeader>
@@ -492,7 +492,7 @@ export function PrequalForm() {
       </Dialog>
 
       <Dialog open={showTermsModal} onOpenChange={setShowTermsModal}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="!w-[100vw] !h-[100vh] !max-w-none !max-h-none sm:!max-w-none overflow-y-auto m-0 rounded-none z-[9999]">
           <DialogHeader>
             <DialogTitle>{t('modal.termsTitle')}</DialogTitle>
           </DialogHeader>
