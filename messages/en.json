@@ -44,7 +44,8 @@
   },
 
   "validation": {
-    "required": "This field is required"
+    "required": "This field is required",
+    "checkIAgree": "Check the I agree checkbox before continuing!"
   },
 
   "messages": {
@@ -52,7 +53,11 @@
     "recaptchaFailed": "reCAPTCHA verification failed",
     "applicationSubmitted": "Application submitted successfully",
     "submissionFailed": "Submission failed",
-    "submissionError": "Submission error occurred"
+    "submissionError": "Submission error occurred",
+    "failDecodeZip": "Failed to decode zipcode. Please try again.",
+    "invalidZip": "Zip code cannot be decoded. It may be invalid. Please correct and try again.",
+    "noCityFound": "No city found for zip code: {zip}",
+    "multipleCitiesFound": "Multiple cities found for zip {zip}. Please select from the list."
   },
 
   "buttons": {
@@ -76,7 +81,7 @@
   },
 
   "modal": {
-    "zipCodeTitle": "Select City/County for Zip Code {zipCode}",
+    "zipCodeTitle": "Select City/County/State",
     "zipCodeMessage": "Multiple locations found for this zip code. Please select one.",
     "privacyTitle": "Privacy Notice",
     "termsTitle": "Terms and Conditions"

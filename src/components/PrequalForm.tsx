@@ -331,7 +331,7 @@ export function PrequalForm() {
                   )}
                 </div>
 
-                <div className="md:col-span-4">
+                <div className="md:col-span-3">
                   <Label htmlFor="homePhone">{t('labels.homePhone')}</Label>
                   <Input
                     id="homePhone"
@@ -355,7 +355,7 @@ export function PrequalForm() {
                   )}
                 </div>
 
-                <div className="md:col-span-4">
+                <div className="md:col-span-3">
                   <Label htmlFor="mobilephone">
                     {t('labels.cellPhone')} <span className="text-red-500">*</span>
                   </Label>
@@ -381,7 +381,7 @@ export function PrequalForm() {
                   )}
                 </div>
 
-                <div className="md:col-span-4">
+                <div className="md:col-span-6">
                   <Label htmlFor="email">
                     {t('labels.email')} <span className="text-red-500">*</span>
                   </Label>

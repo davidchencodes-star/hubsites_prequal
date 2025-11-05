@@ -43,7 +43,7 @@ export function ZipCodeSelectionModal({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>{t('modal.zipCodeTitle', { zipCode: zip })}</DialogTitle>
+          <DialogTitle>{t('modal.zipCodeTitle')}</DialogTitle>
         </DialogHeader>
         
         <div className="p-4">

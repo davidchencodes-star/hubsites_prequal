@@ -2,49 +2,50 @@
   "common": {
     "english": "Inglés",
     "spanish": "Español",
-    "submit": "Enviar",
+    "submit": "Entregar",
     "cancel": "Cancelar",
     "select": "Seleccionar",
-    "pleaseWait": "Por favor espere...",
+    "pleaseWait": "Espere por favor...",
     "version": "Versión",
     "requiredFields": "campos requeridos"
   },
 
   "sections": {
-    "personalInformation": "Información Personal",
+    "personalInformation": "Informacion personal",
     "residentialInformation": "Información Residencial"
   },
 
   "labels": {
-    "firstName": "Nombre",
-    "middleInitial": "Inicial",
+    "firstName": "Nombre de Pila",
+    "middleInitial": "Segundo nombre",
     "lastName": "Apellido",
     "suffix": "Sufijo",
     "address": "Dirección",
-    "zip": "Código Postal",
+    "zip": "Código postal",
     "city": "Ciudad",
     "state": "Estado",
-    "email": "Correo Electrónico",
-    "homePhone": "Teléfono de Casa",
-    "cellPhone": "Teléfono Celular"
+    "email": "Dirección de correo electrónico",
+    "homePhone": "Teléfono de casa",
+    "cellPhone": "Teléfono móvil"
   },
 
   "placeholders": {
-    "firstName": "Nombre",
-    "middleInitial": "Inicial",
+    "firstName": "Nombre de Pila",
+    "middleInitial": "Segundo nombre",
     "lastName": "Apellido",
     "suffix": "Sufijo",
     "address": "Dirección",
-    "zip": "Código Postal",
+    "zip": "Código postal",
     "city": "Ciudad",
     "state": "Estado",
-    "email": "Correo Electrónico",
+    "email": "Dirección de correo electrónico",
     "homePhone": "(XXX)XXX-XXXX",
     "cellPhone": "(XXX)XXX-XXXX"
   },
 
   "validation": {
-    "required": "Este campo es requerido"
+    "required": "Este campo es obligatorio",
+    "checkIAgree": "Marque la casilla de verificación Acepto antes de continuar"
   },
 
   "messages": {
@@ -52,34 +53,38 @@
     "recaptchaFailed": "La verificación de reCAPTCHA falló",
     "applicationSubmitted": "Aplicación enviada exitosamente",
     "submissionFailed": "El envío falló",
-    "submissionError": "Ocurrió un error en el envío"
+    "submissionError": "Ocurrió un error en el envío",
+    "failDecodeZip": "No se pudo decodificar el código postal. Inténtalo de nuevo.",
+    "invalidZip": "El código postal no se puede decodificar. Puede que no sea válido. Corrija y vuelva a intentarlo.",
+    "noCityFound": "No se encontró ciudad para el código postal: {zip}",
+    "multipleCitiesFound": "Se encontraron múltiples ciudades para el código postal {zip}. Por favor, seleccione de la lista."
   },
 
   "buttons": {
     "decodeZip": "Decodificar Código Postal",
     "privacyNotice": "Aviso de Privacidad",
-    "termsAndConditions": "Términos y Condiciones",
-    "iAgree": "Estoy de Acuerdo"
+    "termsAndConditions": "Términos y condiciones",
+    "iAgree": "Estoy de acuerdo"
   },
 
   "consent": {
-    "consentText": "Al hacer clic en la casilla Estoy de Acuerdo y Enviar, consiento que se acceda a mi archivo de crédito con el propósito de precalificar para un préstamo de vehículo. Esta es una consulta suave y no afectará mi puntaje de crédito. Acepto el Aviso de Privacidad, los Términos y Condiciones y reconozco que",
-    "prequalificationNote": "puede contactarme. Entiendo que es posible que no precalifique según los criterios de precalificación."
+    "consentText": "Al hacer clic en la casilla de verificación Acepto y Enviar, mi consentimiento para que se acceda a mi archivo de crédito con el fin de precalificar para un préstamo de vehículo. Esta es una consulta suave y no afectará mi puntaje de crédito. Acepto el Aviso de privacidad, los Términos y condiciones y reconozco que",
+    "prequalificationNote": "Entiendo que podría no precalificar según los criterios de precalificación."
   },
 
   "success": {
     "title": "¡Gracias!",
-    "message": "Gracias, su aplicación fue recibida.",
-    "contactMessage": "Nos comunicaremos con usted en breve.",
+    "message": "Gracias, su solicitud fue recibida.",
+    "contactMessage": "La contactaremos a la brevedad.",
     "inTheMeantime": "Mientras Tanto…",
     "viewInventory": "Ver Más Inventario"
   },
 
   "modal": {
-    "zipCodeTitle": "Seleccionar Ciudad/Condado para Código Postal {zipCode}",
+    "zipCodeTitle": "Seleccione Ciudad/Condado/Estado",
     "zipCodeMessage": "Se encontraron múltiples ubicaciones para este código postal. Por favor, seleccione una.",
     "privacyTitle": "Aviso de Privacidad",
-    "termsTitle": "Términos y Condiciones"
+    "termsTitle": "Términos y condiciones"
   }
 }
 
