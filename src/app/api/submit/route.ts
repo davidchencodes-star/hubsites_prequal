@@ -101,12 +101,12 @@ export async function POST(request: NextRequest) {
         Subject: 'Get My Auto Lead From Prequal App',
         HtmlBody: contactBody
       });
-      messages.push({
-        To: 'sergino@getmyauto.com',
-        From: `no-reply<${from}>`,
-        Subject: 'Get My Auto Lead From Prequal App',
-        HtmlBody: contactBody
-      });
+      // messages.push({
+      //   To: 'sergino@getmyauto.com',
+      //   From: `no-reply<${from}>`,
+      //   Subject: 'Get My Auto Lead From Prequal App',
+      //   HtmlBody: contactBody
+      // });
     }
 
     // Send ADF email (XML/Text)
@@ -146,12 +146,12 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    messages.push({
-      To: 'sergino@getmyauto.com',
-      From: `no-reply<${from}>`,
-      Subject: 'Get My Auto Lead From Prequal App',
-      TextBody: adfBody
-    });
+    // messages.push({
+    //   To: 'sergino@getmyauto.com',
+    //   From: `no-reply<${from}>`,
+    //   Subject: 'Get My Auto Lead From Prequal App',
+    //   TextBody: adfBody
+    // });
 
     // Send emails via Postmark
     try {
