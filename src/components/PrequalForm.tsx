@@ -57,7 +57,6 @@ export function PrequalForm() {
 
   const onSubmit = async (data: any) => {
     setIsSubmitting(true)
-    parent.postMessage("submitted::", "*");
 
     if (!executeRecaptcha) {
       toast.warning(t('messages.recaptchaNotLoaded'));
@@ -91,11 +90,12 @@ export function PrequalForm() {
         // Clear form after successful submission
         form.reset();
         // Redirect to success page if enabled
-        if (config.successPageEnabled) {
-          setShowSuccessPage(true);
-        } else {
-          toast.success(t('messages.applicationSubmitted'))
-        }
+        // if (config.successPageEnabled) {
+        //   setShowSuccessPage(true);
+        // } else {
+        //   toast.success(t('messages.applicationSubmitted'))
+        // }
+        toast.success(t('messages.applicationSubmitted'))
       } else {
         toast.error(result.message || t('messages.submissionFailed'))
       }
@@ -104,6 +104,7 @@ export function PrequalForm() {
       toast.error(t('messages.submissionError'))
     } finally {
       setIsSubmitting(false)
+      parent.postMessage("submitted::", "*");
     }
   }
 
