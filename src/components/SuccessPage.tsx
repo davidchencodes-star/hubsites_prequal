@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { usePrequalStore } from '@/lib/store'
 import { Button } from './ui/button'
 import { CheckCircle } from 'lucide-react'
@@ -9,6 +10,7 @@ interface SuccessPageProps {
 }
 
 export function SuccessPage({ className }: SuccessPageProps) {
+  const t = useTranslations()
   const { config, fetchedData } = usePrequalStore()
 
   const handleViewInventory = () => {
@@ -47,8 +49,8 @@ export function SuccessPage({ className }: SuccessPageProps) {
   const renderCustomSuccessPage = () => (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <div className="text-center px-4 max-w-2xl">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">Thank You!</h1>
-        <p className="text-xl text-gray-600 mb-6">We will contact you shortly.</p>
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">{t('success.title')}</h1>
+        <p className="text-xl text-gray-600 mb-6">{t('success.contactMessage')}</p>
         
         {config.successLogo && (
           <div className="my-6">
@@ -71,7 +73,7 @@ export function SuccessPage({ className }: SuccessPageProps) {
         </div>
         
         <div className="space-y-4">
-          <h4 className="text-lg text-gray-800 font-medium">In The Meantime…</h4>
+          <h4 className="text-lg text-gray-800 font-medium">{t('success.inTheMeantime')}</h4>
           <Button 
             onClick={handleViewInventory}
             className="px-6 py-3 text-base font-medium"
@@ -87,7 +89,7 @@ export function SuccessPage({ className }: SuccessPageProps) {
               }
             }}
           >
-            View More Inventory
+            {t('success.viewInventory')}
           </Button>
         </div>
       </div>
@@ -101,10 +103,10 @@ export function SuccessPage({ className }: SuccessPageProps) {
           <CheckCircle className="w-16 h-16 text-green-500" />
         </div>
         <h1 className="text-2xl font-semibold text-gray-800 mb-4">
-          Thank you, your application was received.
+          {t('success.message')}
         </h1>
         <p className="text-base text-gray-600">
-          We will contact you shortly.
+          {t('success.contactMessage')}
         </p>
       </div>
     </div>

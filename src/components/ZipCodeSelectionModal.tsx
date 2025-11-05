@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from './ui/dialog'
 import { Button } from './ui/button'
 import { RadioGroup, RadioGroupItem } from './ui/radio-group'
@@ -22,6 +23,7 @@ export function ZipCodeSelectionModal({
   items, 
   zip 
 }: ZipCodeSelectionModalProps) {
+  const t = useTranslations()
   const [selectedItem, setSelectedItem] = useState<ZipCodeInfo | null>(null)
 
   const handleSelect = () => {
@@ -41,12 +43,12 @@ export function ZipCodeSelectionModal({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Select City/County for Zip Code {zip}</DialogTitle>
+          <DialogTitle>{t('modal.zipCodeTitle', { zipCode: zip })}</DialogTitle>
         </DialogHeader>
         
         <div className="p-4">
           <p className="text-sm text-gray-600 mb-4">
-            Multiple locations found for this zip code. Please select one.
+            {t('modal.zipCodeMessage')}
           </p>
           
           <RadioGroup 
@@ -83,13 +85,13 @@ export function ZipCodeSelectionModal({
             variant="outline" 
             onClick={handleCancel}
           >
-            Cancel
+            {t('common.cancel')}
           </Button>
           <Button 
             onClick={handleSelect}
             disabled={!selectedItem}
           >
-            Select
+            {t('common.select')}
           </Button>
         </DialogFooter>
       </DialogContent>

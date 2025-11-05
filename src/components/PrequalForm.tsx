@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { ToastContainer, toast } from 'react-toastify';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,6 +25,7 @@ import INFO from '@public/info.json'
 import { RefreshCw } from 'lucide-react'
 
 export function PrequalForm() {
+  const t = useTranslations()
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showPrivacyModal, setShowPrivacyModal] = useState(false)
@@ -58,7 +60,7 @@ export function PrequalForm() {
     parent.postMessage("submitted::", "*");
 
     if (!executeRecaptcha) {
-      toast.warning('reCAPTCHA not loaded');
+      toast.warning(t('messages.recaptchaNotLoaded'));
       setIsSubmitting(false);
       return;
     }
@@ -66,7 +68,7 @@ export function PrequalForm() {
     try {
       const token = await executeRecaptcha('submit');
       if (!token) {
-        toast.warning('reCAPTCHA verification failed');
+        toast.warning(t('messages.recaptchaFailed'));
         setIsSubmitting(false);
         return;
       }
@@ -92,14 +94,14 @@ export function PrequalForm() {
         if (config.successPageEnabled) {
           setShowSuccessPage(true);
         } else {
-          toast.success('Application submitted successfully')
+          toast.success(t('messages.applicationSubmitted'))
         }
       } else {
-        toast.error(result.message || 'Submission failed')
+        toast.error(result.message || t('messages.submissionFailed'))
       }
     } catch (error) {
       logError('Submission error:', error)
-      toast.error('Submission error occurred')
+      toast.error(t('messages.submissionError'))
     } finally {
       setIsSubmitting(false)
     }
@@ -188,17 +190,17 @@ export function PrequalForm() {
             {/* Personal Information Section */}
             <CardContent>
               <CardHeader>
-                <CardTitle>Personal Information</CardTitle>
+                <CardTitle>{t('sections.personalInformation')}</CardTitle>
               </CardHeader>
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mt-4">
                 <div className="md:col-span-4">
                   <Label htmlFor="firstName">
-                    First Name <span className="text-red-500">*</span>
+                    {t('labels.firstName')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="firstName"
                     {...form.register('firstName')}
-                    placeholder="First Name"
+                    placeholder={t('placeholders.firstName')}
                     aria-invalid={!!getFieldError(form.formState.errors, 'firstName')}
                   />
                   {getFieldError(form.formState.errors, 'firstName') && (
@@ -207,22 +209,22 @@ export function PrequalForm() {
                 </div>
 
                 <div className="md:col-span-2">
-                  <Label htmlFor="MI">MI</Label>
+                  <Label htmlFor="MI">{t('labels.middleInitial')}</Label>
                   <Input
                     id="MI"
                     {...form.register('MI')}
-                    placeholder="MI"
+                    placeholder={t('placeholders.middleInitial')}
                   />
                 </div>
 
                 <div className="md:col-span-4">
                   <Label htmlFor="lastName">
-                    Last Name <span className="text-red-500">*</span>
+                    {t('labels.lastName')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="lastName"
                     {...form.register('lastName')}
-                    placeholder="Last Name"
+                    placeholder={t('placeholders.lastName')}
                     aria-invalid={!!getFieldError(form.formState.errors, 'lastName')}
                   />
                   {getFieldError(form.formState.errors, 'lastName') && (
@@ -231,13 +233,13 @@ export function PrequalForm() {
                 </div>
 
                 <div className="md:col-span-2">
-                  <Label htmlFor="suffix">Suffix</Label>
+                  <Label htmlFor="suffix">{t('labels.suffix')}</Label>
                   <Select
                     value={form.watch('suffix') || ' '}
                     onValueChange={(value) => form.setValue('suffix', value === ' ' ? '' : value)}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Suffix" />
+                      <SelectValue placeholder={t('placeholders.suffix')} />
                     </SelectTrigger>
                     <SelectContent>
                       {suffixOptions.map((option) => (
@@ -254,17 +256,17 @@ export function PrequalForm() {
             {/* Residential Information Section */}
             <CardContent>
               <CardHeader>
-                <CardTitle>Residential Information</CardTitle>
+                <CardTitle>{t('sections.residentialInformation')}</CardTitle>
               </CardHeader>
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mt-4">
                 <div className="md:col-span-12">
                   <Label htmlFor="address">
-                    Address <span className="text-red-500">*</span>
+                    {t('labels.address')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="address"
                     {...form.register('address')}
-                    placeholder="Address"
+                    placeholder={t('placeholders.address')}
                     aria-invalid={!!getFieldError(form.formState.errors, 'address')}
                   />
                   {getFieldError(form.formState.errors, 'address') && (
@@ -274,13 +276,13 @@ export function PrequalForm() {
 
                 <div className="md:col-span-3">
                   <Label htmlFor="zip">
-                    Zip <span className="text-red-500">*</span>
+                    {t('labels.zip')} <span className="text-red-500">*</span>
                   </Label>
                   <div className="relative">
                     <Input
                       id="zip"
                       {...form.register('zip')}
-                      placeholder="Zip"
+                      placeholder={t('placeholders.zip')}
                       onChange={handleZipChange}
                       aria-invalid={!!getFieldError(form.formState.errors, 'zip')}
                       className="pr-12"
@@ -288,7 +290,7 @@ export function PrequalForm() {
                     <button
                       type="button"
                       onClick={handleZipDecode}
-                      title="Decode Zip"
+                      title={t('buttons.decodeZip')}
                       className="absolute right-0 top-0 h-full px-3 bg-gray-100 hover:bg-gray-200 rounded-r-sm border-l border-gray-300 flex items-center justify-center transition-colors cursor-pointer"
                     >
                       <RefreshCw className="h-4 w-4 text-gray-600" />
@@ -301,12 +303,12 @@ export function PrequalForm() {
 
                 <div className="md:col-span-6">
                   <Label htmlFor="city">
-                    City <span className="text-red-500">*</span>
+                    {t('labels.city')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="city"
                     {...form.register('city')}
-                    placeholder="City"
+                    placeholder={t('placeholders.city')}
                     aria-invalid={!!getFieldError(form.formState.errors, 'city')}
                   />
                   {getFieldError(form.formState.errors, 'city') && (
@@ -316,12 +318,12 @@ export function PrequalForm() {
 
                 <div className="md:col-span-3">
                   <Label htmlFor="state">
-                    State <span className="text-red-500">*</span>
+                    {t('labels.state')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="state"
                     {...form.register('state')}
-                    placeholder="State"
+                    placeholder={t('placeholders.state')}
                     aria-invalid={!!getFieldError(form.formState.errors, 'state')}
                   />
                   {getFieldError(form.formState.errors, 'state') && (
@@ -330,7 +332,7 @@ export function PrequalForm() {
                 </div>
 
                 <div className="md:col-span-4">
-                  <Label htmlFor="homePhone">Home Phone</Label>
+                  <Label htmlFor="homePhone">{t('labels.homePhone')}</Label>
                   <Input
                     id="homePhone"
                     value={(() => {
@@ -344,7 +346,7 @@ export function PrequalForm() {
                       const digits = e.target.value.replace(/\D/g, '').slice(0, 10)
                       form.setValue('homePhone', digits)
                     }}
-                    placeholder="(XXX)XXX-XXXX"
+                    placeholder={t('placeholders.homePhone')}
                     maxLength={13}
                     aria-invalid={!!getFieldError(form.formState.errors, 'homePhone')}
                   />
@@ -355,7 +357,7 @@ export function PrequalForm() {
 
                 <div className="md:col-span-4">
                   <Label htmlFor="mobilephone">
-                    Cell Phone <span className="text-red-500">*</span>
+                    {t('labels.cellPhone')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="mobilephone"
@@ -370,7 +372,7 @@ export function PrequalForm() {
                       const digits = e.target.value.replace(/\D/g, '').slice(0, 10)
                       form.setValue('mobilephone', digits)
                     }}
-                    placeholder="(XXX)XXX-XXXX"
+                    placeholder={t('placeholders.cellPhone')}
                     maxLength={13}
                     aria-invalid={!!getFieldError(form.formState.errors, 'mobilephone')}
                   />
@@ -381,13 +383,13 @@ export function PrequalForm() {
 
                 <div className="md:col-span-4">
                   <Label htmlFor="email">
-                    E-Mail Address <span className="text-red-500">*</span>
+                    {t('labels.email')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="email"
                     type="email"
                     {...form.register('email')}
-                    placeholder="E-Mail Address"
+                    placeholder={t('placeholders.email')}
                     aria-invalid={!!getFieldError(form.formState.errors, 'email')}
                   />
                   {getFieldError(form.formState.errors, 'email') && (
@@ -401,7 +403,7 @@ export function PrequalForm() {
             <div className="border-t pt-8 px-3 md:px-6">
               <div className="text-right mb-4">
                 <span className="text-sm">
-                  <span className="text-red-500">*</span> required fields
+                  <span className="text-red-500">*</span> {t('common.requiredFields')}
                 </span>
               </div>
 
@@ -411,23 +413,23 @@ export function PrequalForm() {
                   onClick={handleShowPrivacy}
                   className="text-blue-600 underline font-semibold mx-3 cursor-pointer"
                 >
-                  Privacy Notice
+                  {t('buttons.privacyNotice')}
                 </button>
                 <button
                   type="button"
                   onClick={handleShowTerms}
                   className="text-blue-600 underline font-semibold mx-3 cursor-pointer"
                 >
-                  Terms and Conditions
+                  {t('buttons.termsAndConditions')}
                 </button>
               </div>
 
               <div className="mb-6">
                 <p className="text-sm text-gray-900 text-justify mb-4">
-                  By clicking the I Agree checkbox and Submit, I consent to have my credit file accessed for purposes of prequalifying for a vehicle loan. This is a soft inquiry and will not impact my credit score. I agree to the Privacy Notice, Terms and Conditions and I acknowledge I may be contacted by{' '}
+                  {t('consent.consentText')}{' '}
                   <b>{fetchedData?.name}</b>.
                   <br />
-                  I understand that I might not prequalify depending on the prequalification criteria.
+                  {t('consent.prequalificationNote')}
                 </p>
               </div>
 
@@ -439,7 +441,7 @@ export function PrequalForm() {
                     {...form.register('chkiagree')}
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
-                  <span className="text-gray-900 font-semibold">I Agree</span>
+                  <span className="text-gray-900 font-semibold">{t('buttons.iAgree')}</span>
                 </label>
                 {getFieldError(form.formState.errors, 'chkiagree') && (
                   <p className="text-red-500 text-sm">{getFieldError(form.formState.errors, 'chkiagree')}</p>
@@ -458,12 +460,12 @@ export function PrequalForm() {
                     color: config.color
                   }}
                 >
-                  {isSubmitting ? 'Please wait...' : 'Submit'}
+                  {isSubmitting ? t('common.pleaseWait') : t('common.submit')}
                 </Button>
               </div>
 
               <div className="w-full text-center pt-8">
-                {INFO.version && <span className="text-sm">Version {INFO.version}</span>}
+                {INFO.version && <span className="text-sm">{t('common.version')} {INFO.version}</span>}
               </div>
             </div>
           </form>
@@ -482,7 +484,7 @@ export function PrequalForm() {
       <Dialog open={showPrivacyModal} onOpenChange={setShowPrivacyModal}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Privacy Notice</DialogTitle>
+            <DialogTitle>{t('modal.privacyTitle')}</DialogTitle>
           </DialogHeader>
           <div dangerouslySetInnerHTML={{ __html: privacyContent }} />
         </DialogContent>
@@ -491,7 +493,7 @@ export function PrequalForm() {
       <Dialog open={showTermsModal} onOpenChange={setShowTermsModal}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Terms and Conditions</DialogTitle>
+            <DialogTitle>{t('modal.termsTitle')}</DialogTitle>
           </DialogHeader>
           <div dangerouslySetInnerHTML={{ __html: termsContent }} />
         </DialogContent>

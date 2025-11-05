@@ -1,0 +1,85 @@
+{
+  "common": {
+    "english": "Inglés",
+    "spanish": "Español",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "select": "Seleccionar",
+    "pleaseWait": "Por favor espere...",
+    "version": "Versión",
+    "requiredFields": "campos requeridos"
+  },
+
+  "sections": {
+    "personalInformation": "Información Personal",
+    "residentialInformation": "Información Residencial"
+  },
+
+  "labels": {
+    "firstName": "Nombre",
+    "middleInitial": "Inicial",
+    "lastName": "Apellido",
+    "suffix": "Sufijo",
+    "address": "Dirección",
+    "zip": "Código Postal",
+    "city": "Ciudad",
+    "state": "Estado",
+    "email": "Correo Electrónico",
+    "homePhone": "Teléfono de Casa",
+    "cellPhone": "Teléfono Celular"
+  },
+
+  "placeholders": {
+    "firstName": "Nombre",
+    "middleInitial": "Inicial",
+    "lastName": "Apellido",
+    "suffix": "Sufijo",
+    "address": "Dirección",
+    "zip": "Código Postal",
+    "city": "Ciudad",
+    "state": "Estado",
+    "email": "Correo Electrónico",
+    "homePhone": "(XXX)XXX-XXXX",
+    "cellPhone": "(XXX)XXX-XXXX"
+  },
+
+  "validation": {
+    "required": "Este campo es requerido"
+  },
+
+  "messages": {
+    "recaptchaNotLoaded": "reCAPTCHA aún no se ha cargado",
+    "recaptchaFailed": "La verificación de reCAPTCHA falló",
+    "applicationSubmitted": "Aplicación enviada exitosamente",
+    "submissionFailed": "El envío falló",
+    "submissionError": "Ocurrió un error en el envío"
+  },
+
+  "buttons": {
+    "decodeZip": "Decodificar Código Postal",
+    "privacyNotice": "Aviso de Privacidad",
+    "termsAndConditions": "Términos y Condiciones",
+    "iAgree": "Estoy de Acuerdo"
+  },
+
+  "consent": {
+    "consentText": "Al hacer clic en la casilla Estoy de Acuerdo y Enviar, consiento que se acceda a mi archivo de crédito con el propósito de precalificar para un préstamo de vehículo. Esta es una consulta suave y no afectará mi puntaje de crédito. Acepto el Aviso de Privacidad, los Términos y Condiciones y reconozco que",
+    "prequalificationNote": "puede contactarme. Entiendo que es posible que no precalifique según los criterios de precalificación."
+  },
+
+  "success": {
+    "title": "¡Gracias!",
+    "message": "Gracias, su aplicación fue recibida.",
+    "contactMessage": "Nos comunicaremos con usted en breve.",
+    "inTheMeantime": "Mientras Tanto…",
+    "viewInventory": "Ver Más Inventario"
+  },
+
+  "modal": {
+    "zipCodeTitle": "Seleccionar Ciudad/Condado para Código Postal {zipCode}",
+    "zipCodeMessage": "Se encontraron múltiples ubicaciones para este código postal. Por favor, seleccione una.",
+    "privacyTitle": "Aviso de Privacidad",
+    "termsTitle": "Términos y Condiciones"
+  }
+}
+

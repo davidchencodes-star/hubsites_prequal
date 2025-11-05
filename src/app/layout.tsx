@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, getLocale } from 'next-intl/server';
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Suspense } from 'react'
@@ -23,8 +25,11 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={inter.className}>
         <Suspense fallback={
           <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -33,7 +38,9 @@ export default async function RootLayout({
             </div>
           </div>
         }>
-          {children}
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
         </Suspense>
       </body>
     </html>

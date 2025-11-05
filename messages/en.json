@@ -1,0 +1,85 @@
+{
+  "common": {
+    "english": "English",
+    "spanish": "Spanish",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "select": "Select",
+    "pleaseWait": "Please wait...",
+    "version": "Version",
+    "requiredFields": "required fields"
+  },
+
+  "sections": {
+    "personalInformation": "Personal Information",
+    "residentialInformation": "Residential Information"
+  },
+
+  "labels": {
+    "firstName": "First Name",
+    "middleInitial": "MI",
+    "lastName": "Last Name",
+    "suffix": "Suffix",
+    "address": "Address",
+    "zip": "Zip",
+    "city": "City",
+    "state": "State",
+    "email": "E-Mail Address",
+    "homePhone": "Home Phone",
+    "cellPhone": "Cell Phone"
+  },
+
+  "placeholders": {
+    "firstName": "First Name",
+    "middleInitial": "MI",
+    "lastName": "Last Name",
+    "suffix": "Suffix",
+    "address": "Address",
+    "zip": "Zip",
+    "city": "City",
+    "state": "State",
+    "email": "E-Mail Address",
+    "homePhone": "(XXX)XXX-XXXX",
+    "cellPhone": "(XXX)XXX-XXXX"
+  },
+
+  "validation": {
+    "required": "This field is required"
+  },
+
+  "messages": {
+    "recaptchaNotLoaded": "reCAPTCHA not loaded",
+    "recaptchaFailed": "reCAPTCHA verification failed",
+    "applicationSubmitted": "Application submitted successfully",
+    "submissionFailed": "Submission failed",
+    "submissionError": "Submission error occurred"
+  },
+
+  "buttons": {
+    "decodeZip": "Decode Zip",
+    "privacyNotice": "Privacy Notice",
+    "termsAndConditions": "Terms and Conditions",
+    "iAgree": "I Agree"
+  },
+
+  "consent": {
+    "consentText": "By clicking the I Agree checkbox and Submit, I consent to have my credit file accessed for purposes of prequalifying for a vehicle loan. This is a soft inquiry and will not impact my credit score. I agree to the Privacy Notice, Terms and Conditions and I acknowledge I may be contacted by",
+    "prequalificationNote": "I understand that I might not prequalify depending on the prequalification criteria."
+  },
+
+  "success": {
+    "title": "Thank You!",
+    "message": "Thank you, your application was received.",
+    "contactMessage": "We will contact you shortly.",
+    "inTheMeantime": "In The Meantime…",
+    "viewInventory": "View More Inventory"
+  },
+
+  "modal": {
+    "zipCodeTitle": "Select City/County for Zip Code {zipCode}",
+    "zipCodeMessage": "Multiple locations found for this zip code. Please select one.",
+    "privacyTitle": "Privacy Notice",
+    "termsTitle": "Terms and Conditions"
+  }
+}
+
